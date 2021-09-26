@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 선언부 -->
+<!-- dtd, schema : xml문서 작성규칙을 제시하는 문서 -->
+<!DOCTYPE configuration    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.jsv.giftShop.dto.GoodsCateDTO" alias="goodsCateDTO"/>
+		<typeAlias type="com.jsv.giftShop.dto.GoodsDTO" alias="goodsDTO"/>
+		<typeAlias type="com.jsv.giftShop.dto.GoodsCartDTO" alias="goodsCartDTO"/>
+		<typeAlias type="com.jsv.giftShop.dto.GoodsDetailDTO" alias="goodsDetailDTO"/>
+		<typeAlias type="com.jsv.giftShop.dto.GoodsOrderDTO" alias="goodsOrderDTO"/>
+		<typeAlias type="com.jsv.giftShop.dto.GoodsOrderDetailDTO" alias="goodsOrderDetailDTO"/>
+		<typeAlias type="com.jsv.giftShop.util.Pagination" alias="pagination"/>
+		<typeAlias type="com.jsv.member.dto.MemberDTO" alias="memberDTO"/>
+		<typeAlias type="com.jsv.event.dto.EventDTO" alias="eventDTO"/>
+		<typeAlias type="com.jsv.mgz.dto.MagazineDTO" alias="MagazineDTO"/>
+		<typeAlias type="com.jsv.mgz.dto.MfileDTO" alias="MfileDTO"/>
+		<typeAlias type="com.jsv.mvChart.dto.MvChartDTO" alias="MvChartDTO"/>		
+		<typeAlias type="com.jsv.reserve.dto.PayDTO" alias="PayDTO"/>
+		<typeAlias type="com.jsv.reserve.dto.ReserveDTO" alias="ReserveDTO"/>
+		<typeAlias type="com.jsv.reserve.dto.TheaterDTO" alias="TheaterDTO"/>
+	</typeAliases>
+</configuration>

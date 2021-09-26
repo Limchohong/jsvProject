@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="goods_payment">
+	
+	<!-- 결제할 상품 목록 보여주기 - 장바구니 구매-->
+	<select id="getOrdersList" parameterType="int" resultType="hashMap">
+		<![CDATA[
+			SELECT g.goods_no, g.goods_name, g.goods_price, 
+				   g.goods_comp, g.goods_img, gc.u_no,
+				   gc.goods_cart_no, gc.goods_cart_qty
+			FROM   member m, goods g, goods_cart gc
+			WHERE  m.u_no=gc.u_no 
+				   AND 
+				   g.goods_no=gc.goods_no 
+				   AND 
+				   gc.goods_cart_no = #{goods_cart_no}
+		]]>			
+	</select>
+	
+	<!-- 회원 이름, 휴대폰 번호 조회  -->
+	<select id="getMemberInfo" parameterType="int" resultType="hashMap">	
+		<![CDATA[
+			SELECT u_name, u_phone
+			FROM   member
+			WHERE  u_no=#{u_no}
+		]]>	
+	</select>	
+
+	<!-- 결제상품 - 상품 상세에서 구매시 -->
+	<select id="getOrderGoods" parameterType="int" resultType="hashMap">
+		<![CDATA[
+			SELECT goods_no, goods_name, goods_price, 
+				   goods_comp, goods_img
+			FROM   goods
+			WHERE  goods_no = #{goods_no}
+		]]>			
+	</select>
+	
+	<!-- 주문 (주문테이블) -->
+	<insert id="newGoodsOrder" parameterType="goodsOrderDTO">
+		<![CDATA[
+			INSERT INTO goods_order(goods_order_no, u_no, goods_order_ph, goods_order_price) 
+			VALUES (#{goods_order_no}, #{u_no}, #{goods_order_ph},#{goods_order_price})
+		]]>	
+	</insert>
+	
+	<!-- 주문(주문상세테이블) -->
+	<insert id="newGoodsOrderDetail" parameterType="hashMap">
+			INSERT INTO goods_order_detail( goods_order_no, u_no, goods_no,
+										    goods_price,goods_order_qty,goods_order_method,
+											goods_giftcone_code) 
+			VALUES 
+			 <foreach item="item" collection="list" separator=",">
+		           ( #{item.goods_order_no}, #{item.u_no}, #{item.goods_no},
+					 #{item.goods_price}, #{item.goods_order_qty}, 
+					 #{item.goods_order_method}, #{item.goods_giftcone_code} )
+		     </foreach>
+	</insert>
+	
+	<!-- 기프티콘 번호 조회 -->
+	<select id="getGiftcone" resultType="hashMap" parameterType="string">
+		<![CDATA[
+			SELECT gd.goods_giftcone_code, g.goods_name
+			FROM   goods_order_detail gd, goods g
+			WHERE  gd.goods_no=g.goods_no and
+		 		   goods_order_no=#{goods_order_no}
+		]]>	
+	</select>
+	
+	<!-- 주문내역 조회 -->
+	<select id="getOrderList" parameterType="int" resultType="hashMap">
+		<![CDATA[
+			SELECT m.u_name, go.goods_order_no, go.u_no,
+				   go.goods_order_ph, go.goods_order_price,
+				   go.goods_order_date
+			FROM   member m, goods_order go
+			WHERE  m.u_no=go.u_no
+				   and   
+				   go.u_no=#{u_no}
+			ORDER BY goods_order_date desc 
+		]]>	  
+	</select>
+	
+	
+	<!-- 주문 상세내역 조회 -->
+	<select id="getOrderDetail" parameterType="String" resultType="hashMap">
+		<![CDATA[
+			SELECT g.goods_name, g.goods_price, g.goods_img,
+				   go.goods_order_ph, god.goods_order_qty, 
+				   god.goods_giftcone_code, god.goods_giftcone_use,
+				   god.goods_no, god.goods_giftcone_uesdate
+			FROM   goods g, goods_order go, goods_order_detail god
+			WHERE  g.goods_no=god.goods_no 
+				   AND 
+				   go.goods_order_no=god.goods_order_no
+				   AND
+				   god.goods_order_no=#{goods_order_no}
+		]]>
+	</select>
+
+</mapper> 

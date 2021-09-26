@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+/* 회원가입폼 적용 css */
+.joinForm{
+	width:980px;
+    margin-top: 40px;
+	margin-bottom:100px;
+	
+}
+.joinForm table{
+	margin-top: 30px;
+	border-collapse: collapse;
+	width:60%;
+}
+
+.joinForm_title{
+	font-weight: 500;
+    font-size: 28px;
+	border-bottom: 2px solid #000;
+	padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.joinForm_sub_title{
+	text-align:center;
+}
+
+.join_wrap tbody{
+	border: 1px solid #373e46;
+}
+.join_wrap tr td:first-child, .joinForm_sub_title{
+	font-size:18px;
+}
+
+.essential::after{
+	content:'*';
+	color:red;
+}
+
+.joinForm_sub_title::before{
+	content:' * ';
+	color:red;
+}
+
+.join_wrap td{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+.join_wrap input[type="text"], .join_wrap input[type="password"], .test1{
+	border:1px solid #ccc;
+	width: 80%;
+    height: 50px;
+    font-size:17px
+}
+
+#u_id, #u_email,#mail_check{
+    width: 245px;
+}
+
+.btn_check{
+    height: 50px;
+    border: none;
+    width: 20%;
+    cursor: pointer;
+}
+
+.btn_join, .btn_cancel{
+    width: 130px;
+    height: 40px;
+    border: none;
+    margin: 10px 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.btn_join{
+	background: #373e46;
+	color:#fff
+}

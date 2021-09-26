@@ -1,0 +1,258 @@
+@charset "UTF-8";
+/*공통*/
+html{
+	box-sizing: border-box;
+	height:100%;
+	width:100%;
+	margin: 0; 
+	padding: 0;
+}
+*{
+	margin:0 auto;
+	padding:0px; 
+	list-style:none;
+	text-align:center;
+	}
+a{
+	text-decoration:none;
+	display:block;
+}
+body{
+	  min-height: 100%;
+	  width:100%;
+	  padding: 0;
+	  margin: 0;
+	  position: relative; 
+	  font-size:1.5rem;
+	  overflow-x:hidden;
+  	  oveflow-y:auto;
+}
+article{
+		padding-bottom:20px;
+}
+.clear{
+	clear:both;
+}
+/*레이아웃 틀*/
+#body-content{
+			 width:1400px;
+		     padding-bottom:20px;}
+header {height:20px;
+		background:black;
+		}
+nav {height:123px;
+	 background:white;
+	 margin:0px;
+	 padding:0px;
+	 }
+#header-wrap{
+	position:relative;
+}
+#body-wrap{
+	width: 100%;
+    height: 100%;
+
+}
+#body-content{	
+	
+}
+footer{
+  position: absolute; 
+  bottom: 0; /* this will fix it */
+  left: 0;
+  right: 0;
+  height: 20px;
+  width: 100%;
+
+}
+/* 레이아웃 끝	 */
+#banner{
+	 position:absolute;
+	 top:80px;
+	 margin-top:120px; 
+	 padding:0px;
+	 left:1500px;
+	 width:120px;
+	 height:478px;
+	}
+	
+.content-btm{
+ 	 width:102px;
+	 height:91px;
+	 position:absolute;
+	 top:10px;
+	 right:8px;
+}
+.head-wrap{
+	 font-size:0.7rem;
+	 font-weight:bold;
+	 width:1200px;
+	 margin:0 auto;
+	 z-index:9999;
+}
+#header-link ul{
+	float:right;
+}
+#header-link li{
+	float:left;
+	display:inline-block;
+	padding:2.3px 10px;
+}
+#header-link li a{
+	color:white;
+}
+.nav-wrap{
+	position:relative;
+	z-index:999;
+}
+nav #forhr{
+	position:relative;
+}
+nav #logo1_container{
+					position:relative;
+					 left:420px;
+					 top:3px;
+					}
+nav #logo1{
+		float:left;
+		position:absolute;
+		z-index:999;
+}
+#header-link{
+	margin:0px 180px;
+}
+nav #logo2{
+}
+nav #logo2 img{
+	padding-top:30px;
+	text-align:center;
+}
+.menu > li{
+    display:inline-block;
+    text-align:center;
+    margin-top:-20px;
+}
+.menu >li >a{
+	font-size:1.1rem;
+	font-weight:900;
+    color:black;
+    width:120px;
+    display:block;
+    margin: 5px 0;
+}
+nav {border-top: 12px solid black; 
+	 border-bottom: 12px solid black;}
+.nav-wrap{
+	border-top: 5px dotted white; 
+	border-bottom: 5px dotted white;
+	margin-top:-7px;
+	padding-bottom:27px;}
+nav #search{
+	float:right;
+	margin:-40px 400px;
+} 
+.main_input{
+	width: 50%; 
+	height: 5%;
+	line-height : normal;
+	padding: .4em .4em; /* 원하는 여백 설정, 상하단 여백으로 높이를 조절 */ 
+	border: 1px solid #999;
+	border-radius: 0; /* 둥근모서리 제거 */ 
+	outline-style: none; /* 포커스시 발생하는 효과 제거를 원한다면 */ 
+	-webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */ 
+	-moz-appearance: none; appearance: none;
+}
+.btn1{
+  background-color:#555555;
+  border: none;
+  color: white;
+  padding:4px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  font-weight:bold;
+}
+#company_intro ul li{
+	font-size:1rem;
+	color:white;
+	float:left;
+	text-align:center;
+}
+/* main */
+article.bac-ban{
+	width:1400px;
+}
+/*nav메뉴 슬라이드*/
+#dm ul{min-width:300px;
+	   text-align:center;
+}
+.dropdown ul ul {position: absolute; 
+				display: none;
+				}
+				
+.dropdown ul ul li {display:block;
+					background-color:black;
+					padding:5px;
+					color:white;
+					font-size:1rem;
+					z-index:999;}
+					
+.dropdown ul li {display: inline-block;
+				 margin-left:-3.0px;
+				 }
+.dropdown ul li a{
+				font-weight:900;
+}			 
+				 
+.dropdown ul ul li a{display:block;
+				 width:135px;
+				 z-index:9999;
+				 color:white;
+				 text-decoration:none;
+				 line-height:43px;
+				 }
+.dropdown ul ul li a:hover{
+	font-weight:900;
+	background:gray;
+}
+
+/* 끝 */
+/* .adminsub ul li a{
+	text-align:left;
+	padding:5px;
+	text-decoration:none;
+}
+.adminsub ul li{
+	overflow:auto;
+	border: 2px solid black;
+}
+.adminsub{
+	 position:fixed;
+	 top:60px;
+	 margin-top:120px; 
+	 padding:0px;
+	 left:15px;
+	 width:220px;
+	 height:700px;
+	 background:#c0c0c0;
+}
+.topmenu{
+	background:black;
+	color:white;
+	padding:5px;
+} */
+/* admin */
+
+.first ul li a{float:left; padding:0px 40px;text-decoration:none;color:white;font-weight:900;}
+.first{display:inline-block;zoom:1;.display:inline;}
+.footer_menu {bottom:0px;
+			 text-align:center;
+			 font-size:1rem;
+			 background:black;
+			 color:white;}
+.first ul {padding:50px 10px;}
+.first li {display:inline;}
+.second{padding:20px;}
+.third{padding-bottom:5px;}
+.footer_menu span {text-decoration:underline;}

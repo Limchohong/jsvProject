@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+/* 마이페이지 비밀번호 확인 css */
+.contents{
+	position: relative;
+    max-width: 1060px;
+    min-width: 1024px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
+
+.content_title{
+    padding-top: 75px;
+    text-align: center;
+}
+
+.title, .sub_title{
+	margin: 0;
+    color: #222;
+    font-size: 40px;
+    line-height: 40px;
+    
+}
+
+.title_desc{
+    padding-top: 20px;
+    color: #555;
+    font-size: 16px;
+}
+
+.content_wrap{
+	padding-top: 60px;
+}
+
+.regi_complete {
+    padding: 50px 0;
+    border-top: 1px solid #222;
+    background-color: #f8f8f8;
+    text-align: center;
+}
+
+.img{
+	width: 89px;
+    height: 89px;
+    margin: 0 auto 35px;
+    display: block;
+    background: url(../resources/img/member/ico_regi_complete.png) no-repeat -300px 0;
+    background-position: -100px -200px;
+}
+
+.sub_title{
+    font-size: 24px;
+}
+
+.sub_desc{
+	padding-top: 8px;
+	font-size:18px;
+}
+
+.pwd_box{
+	margin-top: 35px;
+}
+
+.input_txt {
+    display: inline-block;
+    height: 34px;
+    padding-right: 32px;
+    vertical-align: middle;
+    zoom: 1;
+}
+
+.input_txt.w330{
+    padding-right: 0;
+}
+
+.input_txt.w330 input {
+    width: 298px;
+}
+
+.input_txt input {
+    display: block;
+    width: 100%;
+    height: 32px;
+    padding: 0 15px;
+    border: 1px solid #ddd;
+    color: #888;
+    font-size: 14px;
+    line-height: 32px;
+}
+
+.btn_center {
+    padding-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    min-width: 128px;
+    height: 38px;
+    margin: 0 3px;
+    *margin: 0 5px;
+    padding: 0 15px;
+    border: 1px solid #333;
+    border-radius: 3px;
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+    line-height: 38px;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: border .5s, background .5s, color .5s;
+}
+.btn.btn_em {
+    background-color: #333;
+    color: #fff;
+}

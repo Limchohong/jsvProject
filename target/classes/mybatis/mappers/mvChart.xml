@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="mvChart">
+	<resultMap type="MvChartDTO" id="ChartResult">
+	   	<result property="cno" column="cno"/>
+	   	<result property="c_img" column="c_img"/>
+	   	<result property="ctitle" column="ctitle"/>
+	   	<result property="crate" column="crate"/>
+	   	<result property="cdir" column="cdir"/>
+	   	<result property="cactor" column="cactor"/>
+	   	<result property="cgenre" column="cgenre"/>
+	   	<result property="cinfo" column="cinfo"/>
+	   	<result property="c_content" column="c_content"/>
+	</resultMap>
+	
+		
+	<!-- 무비차트 목록조회 -->
+	<select id="getmvChart" resultType="MvChartDTO">
+			select cno,c_img,ctitle,crate,cdir,cactor,cgenre,cinfo,c_content,copen from mvchart
+	</select>
+	
+	<!-- 무비차트 상세조회 -->
+	<select id="getmvDtail" resultType="MvChartDTO" parameterType="int">
+		select cno,c_img,ctitle,crate,cdir,cactor,cgenre,cinfo,c_content,copen from mvchart
+					where cno=#{cno}
+	</select>
+	
+	  </mapper>

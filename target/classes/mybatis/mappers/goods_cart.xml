@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cart">
+		
+	<!-- 장바구니 담기 -->
+	<insert id="addCart" parameterType="goodsCartDTO">
+		<selectKey keyProperty="goods_cart_no" resultType="int" order="BEFORE">
+			SELECT AUTO_INCREMENT
+			FROM information_schema.tables
+			WHERE table_name = "goods_cart"
+			AND table_schema = "jsv";
+		</selectKey>
+		<![CDATA[
+			INSERT INTO goods_cart
+			VALUES(#{goods_cart_no}, #{u_no}, #{goods_no}, #{goods_cart_qty})
+		]]>			
+	</insert>
+	
+	<!-- 장바구니 목록조회 -->
+	<select id="getCartList" resultType="goodsCartDTO" parameterType="int">
+		<![CDATA[
+			SELECT 	 g.goods_no, g.goods_name, g.goods_price, g.goods_img, g.goods_comp,
+			 	   	 m.u_no,   gc.goods_cart_no, gc.goods_cart_qty
+			FROM   	 goods_cart gc, member m, goods g 
+			WHERE  	 g.goods_no=gc.goods_no AND m.u_no=gc.u_no AND gc.u_no=#{u_no}
+			ORDER BY gc.goods_cart_no
+		]]>	
+	</select>
+	
+	<!-- 장바구니 수량변경  -->
+	<update id="setCartQty" parameterType="hashMap">
+		<![CDATA[
+			UPDATE goods_cart 
+			SET    goods_cart_qty = #{goods_cart_qty}
+			WHERE  goods_cart_no = #{goods_cart_no}
+		]]>	
+	</update>
+	
+	<!-- 장바구니 삭제 -->
+	<delete id="removeCart" parameterType="int">
+		<![CDATA[
+			DELETE 
+			FROM  goods_cart 
+			WHERE goods_cart_no=#{goods_cart_no}
+		]]>	
+	</delete>
+
+</mapper> 

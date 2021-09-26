@@ -1,0 +1,66 @@
+@charset "UTF-8";
+.sales_wrap{
+	width:980px;
+	padding-top: 50px;
+}
+.sales_wrap table{
+	width:90%;
+	border-collapse: collapse;
+}
+
+.sales_title{
+	font-weight: 500;
+    font-size: 28px;
+	border-bottom: 2px solid #000;
+	padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.sales_wrap table tr:not(:last-child){
+	font-size:22px;
+	border-bottom:1px solid #ccc;
+}
+
+.sales_wrap table tr td{
+	padding-top:5px;
+	padding-bottom:5px
+}
+.sales_wrap table tr td a {
+	text-decoration:none;
+	color:#000
+}
+
+.sales_wrap table tr td a:hover {
+	color:#ccc
+}
+
+.total_price{
+	color:red
+}
+
+/* 연별 매출조회 */
+.sales_wrap strong {
+    font-size: 28px;
+    font-weight: 500;
+    display: block;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+}   
+
+.sales_links{
+	text-align: right;
+}
+
+.sales_links a{
+	color: grey;
+    text-decoration: none;
+    font-size: 20px;
+    display: inline-block;
+    padding-top: 10px;
+    padding-bottom: 10px
+}
+
+.sales_links a:hover{
+	color: #ccc;
+}
+

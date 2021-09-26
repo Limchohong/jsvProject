@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="goods">
+	<!-- 상품 -->
+	<resultMap type="goodsDTO" id="goodsResult">
+		<result property="goods_no" column="goods_no"/>
+		<result property="goods_cate_no" column="goods_cate_no"/>
+		<result property="goods_name" column="goods_name"/>
+		<result property="goods_comp" column="goods_comp"/>
+		<result property="goods_price" column="goods_price"/>
+		<result property="goods_validity" column="goods_validity"/>
+		<result property="goods_country" column="goods_country"/>
+		<result property="goods_img" column="goods_img"/>
+		<result property="goods_regdate" column="goods_regdate"/>
+		<result property="goods_update" column="goods_update"/>
+	</resultMap>
+	
+	<!-- 상품 카테고리 -->
+	<resultMap type="GoodsCateDTO" id="goodsCateResult">
+		<result property="goods_cate_no" column="goods_cate_no"/>
+		<result property="goods_cate_name" column="goods_cate_name"/>
+	</resultMap>
+	
+	<!-- 상품상세내용 -->
+	<resultMap type="goodsDetailDTO" id="goodsDetailResult">
+		<result property="goods_detail_no" column="goods_detail_no"/>
+		<result property="goods_no" column="goods_no"/>
+		<result property="goods_detail_desc1" column="goods_detail_desc1"/>
+		<result property="goods_detail_desc2" column="goods_detail_desc2"/>
+		<result property="goods_detail_desc3" column="goods_detail_desc3"/>
+		<result property="goods_detail_desc4" column="goods_detail_desc4"/>
+		<result property="goods_detail_desc5" column="goods_detail_desc5"/>
+	</resultMap>
+	
+	<!-- 카테고리 목록조회 -->
+	<select id="getGoodsCates" resultType="goodsCateDTO">
+		<![CDATA[
+			SELECT * 
+			FROM goods_cate
+		]]>		
+	</select>
+	
+	<!-- 상품 목록  조회 -->
+	<select id="getGoodsList" resultType="HashMap" parameterType="string" >
+		<![CDATA[
+			SELECT *
+			FROM   goods gds, goods_cate gdscate    
+			WHERE  gds.goods_cate_no=gdscate.goods_cate_no AND
+				   gdscate.goods_cate_name=#{goods_cate_name} 
+			ORDER BY gds.goods_regdate
+		]]>
+	</select>
+	
+	<!-- 상품 번호로 상품 상세 조회 -->
+	<select id="getGoodsDetail" resultType="HashMap" parameterType="int" >
+		<![CDATA[
+			SELECT g.*,
+	    		   gd.goods_detail_desc1,gd.goods_detail_desc2,
+		           gd.goods_detail_desc3,gd.goods_detail_desc4,
+		           gd.goods_detail_desc5
+			FROM   goods g,goods_detail gd
+			WHERE  g.goods_no=gd.goods_no AND
+	   			   g.goods_no=#{goods_no}
+		]]>	
+	</select>
+	
+	<!-- 카테고리 번호로 상품 조회 -->
+	<select id="getCateGoodsList" resultType="HashMap" parameterType="int">
+		<![CDATA[
+			SELECT 	g.goods_no,g.goods_name, g.goods_price, g.goods_img,gc.goods_cate_name
+			FROM 	goods g, goods_cate gc
+			WHERE 	g.goods_cate_no=gc.goods_cate_no
+					and
+					gc.goods_cate_no=#{goods_cate_no}
+		]]>
+	</select>
+	
+	<!-- 카테고리_상품 목록조회 페이징 -->
+	<select id="getGoodsCate" resultType="hashMap" parameterType="pagination">
+		<![CDATA[
+			SELECT   g.goods_no, g.goods_img, g.goods_name, 
+				     g.goods_price, g.goods_regdate, g.goods_update,
+		 		     gc.goods_cate_no, gc.goods_cate_name
+			FROM     goods_cate gc, goods g
+			WHERE  	 gc.goods_cate_no=g.goods_cate_no
+			ORDER BY gc.goods_cate_no, g.goods_no
+			LIMIT    #{start}, #{end}
+		]]>
+	</select>
+	
+	<!-- 상품 갯수 조회 -->
+	<select id="goodsCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(goods_no) 
+			FROM goods
+		]]>
+	</select>
+
+</mapper> 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+  	<!-- 관리자페이지 -->
+  	<definition name="/admin/giftShop/main" extends="giftShopLayout">
+  		<put-attribute name="main" value="/WEB-INF/views/admin/giftShop/main.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 상품등록폼 -->
+  	<definition name="/admin/giftShop/newGoodsForm" extends="giftShopLayout">
+  		<put-attribute name="main" value="/WEB-INF/views/admin/giftShop/newGoodsForm.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 상품 수정폼 -->
+  	<definition name="/admin/giftShop/setGoodsForm" extends="giftShopLayout">
+  		<put-attribute name="main" value="/WEB-INF/views/admin/giftShop/setGoodsForm.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 연매출 조회 폼 -->
+  	<definition name="/admin/giftShop/goodsYearSales" extends="giftShopLayout">
+  		<put-attribute name="main" value="/WEB-INF/views/admin/giftShop/goodsYearSales.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 월 매출 조회 폼 -->
+  	<definition name="/admin/giftShop/goodsMonthlySales" extends="giftShopLayout">
+  		<put-attribute name="main" value="/WEB-INF/views/admin/giftShop/goodsMonthlySales.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 월별 일매출 조회 폼 -->
+  	<definition name="/admin/giftShop/goodsDailySales" extends="giftShopLayout">
+  		<put-attribute name="main" value="/WEB-INF/views/admin/giftShop/goodsDailySales.jsp"></put-attribute>
+  	</definition>
+  	
+</tiles-definitions>

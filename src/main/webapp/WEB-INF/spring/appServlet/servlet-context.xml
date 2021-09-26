@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory 
+
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean> -->
+
+	
+   	<!--  tiles적용시작
+   		   스프링의 TilesConfigurer클래스를 이용해 id가 tilesConfigurer인 빈을 생성한다 -->
+	<beans:bean id="tilesConfigurer" 
+	         class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+	  	<beans:property name="definitions">
+	     	 <beans:list>
+	      	   <beans:value>classpath:tiles/*.xml</beans:value>
+	     	 </beans:list>
+	   	</beans:property>
+	   	<beans:property name="preparerFactoryClass" 
+	               value="org.springframework.web.servlet.view.tiles2.SpringBeanPreparerFactory"/>
+	</beans:bean>  
+	<!-- 타일즈 viewResolver를 사용하여 화면을 표시한다 -->
+	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver"> 
+	   	<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/> 
+	</beans:bean>
+    <!--  tiles적용끝 -->
+    
+	<!-- 멀티파트 리졸버 -->
+    <beans:bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+       <beans:property name="maxUploadSize"    value="52428800" />
+       <!-- maxUploadSize : 최대업로드가 가능한 파일의 크기. 여기에서는 50MB -->
+       <beans:property name="maxInMemorySize" value="52428800" />
+       <!-- maxInMemorySize : 디스크에 임시 파일을 생성하기 전 메모리에 보관할 수 있는 최대 바이트 크기의 설정.여기에서는 50MB -->
+       <beans:property name="defaultEncoding"    value="utf-8" />
+	   <!-- defaultEncoding : 전달되는 매개변수의 인코딩을 설정 -->
+    </beans:bean>
+    
+    <beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
+		<beans:property name="host" value="smtp.naver.com"/> <!-- 메이서버 호스트 -->
+		<beans:property name="port" value="465"/> <!-- 메이서버 포트번호 -->
+     	<beans:property name="username" value="y_0511"/> <!--  이메일 아이디 -->
+     	<beans:property name="password" value="5224958z"/> <!-- 비밀번호 -->
+      	<!-- 보안연결 SSL과 관련된 설정 -->
+     	<beans:property name="javaMailProperties">
+	     	<beans:props>
+	      		<beans:prop key="mail.smtp.auth">true</beans:prop>
+	      		<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+	      		<beans:prop key="mail.smtps.checkserveridentity">true</beans:prop>
+	      		<beans:prop key="mail.smtps.ssl.trust">*</beans:prop>
+	      		<beans:prop key="mail.debug">true</beans:prop>
+	      		<beans:prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</beans:prop>
+	     	</beans:props>
+		</beans:property>
+    </beans:bean>
+
+    
+	<context:component-scan base-package="com.jsv" />
+	
+	
+</beans:beans>

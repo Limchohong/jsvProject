@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminMgz">
+	<resultMap type="MagazineDTO" id="MgzResult">
+	   	<result property="mno" column="mno"/>
+	   	<result property="mname" column="mname"/>
+	   	<result property="mtitle" column="mtitle"/>
+	   	<result property="mcontent" column="mcontent"/>
+	   	<result property="mdir" column="mdir"/>
+	   	<result property="mactor" column="mactor"/>
+	   	<result property="mgenre" column="mgenre"/>
+	   	<result property="minfo" column="minfo"/>
+	   	<result property="mopen" column="mopen"/>
+	   	<result property="mregDate" column="mregDate"/>
+	   	<result property="mwriter" column="mwriter"/>
+	</resultMap>
+	
+	<!-- 관리자 매거진 게시물 등록 -->
+	<insert id="insertMgz"  parameterType="java.util.Map">
+		<selectKey keyProperty="mno" resultType="int"  order="BEFORE">
+				SELECT NEXTVAL(mno_seq) FROM dual
+		</selectKey>
+			<![CDATA[ 
+				INSERT INTO magazine(mno,mname,mtitle,mcontent,mdir,mactor,
+					mgenre,minfo,mopen,mregDate,mwriter)
+						VALUES (#{mno},#{mname},#{mtitle},#{mcontent},#{mdir},#{mactor}
+						,#{mgenre},#{minfo},#{mopen},#{mregDate},#{mwriter})
+			  ]]>				 
+	</insert>	
+	
+	<!-- 관리자 이미지 등록 -->
+	<insert id="insertMimg" parameterType="MfileDTO">
+		<selectKey keyProperty="mFno" resultType="int"  order="BEFORE">
+			SELECT NEXTVAL(mfno_seq) FROM dual
+		</selectKey>
+		<![CDATA[ 
+				INSERT INTO mfile(mFno,mno,mFtype,mFame)
+				VALUES( #{mFno}, #{mno}, #{mFtype}, 
+				   		#{mFame})
+		   		]]>
+	</insert>
+	
+	<!-- 관리자 매거진 삭제 -->
+	<delete id="delMgz" parameterType="int">
+			DELETE FROM a, b USING magazine AS a LEFT JOIN mfile AS b ON a.mno = b.mno 
+			WHERE a.mno = #{mno}
+	</delete>
+	
+	<!-- 매거진 수정폼 보여주기 위한 정보조회 -->
+	<!-- 제품상세조회 - 제품정보 -->	
+	<select id="getMgzDetail"  resultMap="MgzResult" parameterType="int">
+		  <![CDATA[ 
+				SELECT  m.*,mfi.mFame,mfi.mFtype
+				FROM    magazine m, mfile mfi
+				where m.mno = mfi.mno
+						AND  mfi.mFtype='main_img'
+		        		AND  m.mno= #{mno}
+		        ORDER BY m.mno		        
+		  ]]>
+	</select>	
+		
+	<!-- 매거진 상세조회- 이미지 -->
+	<select id="getMgzImg"  
+	        resultType="MfileDTO"  parameterType="int">
+				SELECT *
+				FROM   mfile
+				WHERE  mno=#{mno}
+	</select>	
+	
+	<!-- 매거진 수정처리 -정보-->
+	<update id="updateMinfo" parameterType="hashmap">
+		UPDATE magazine
+		<set>
+		<if test="mno!='' and mno!=null">mno=#{mno},</if>
+		<if test="mname!='' and mname!=null">mname=#{mname},</if>
+		<if test="mtitle!='' and mtitle!=null">mtitle=#{mtitle},</if>
+		<if test="mcontent!='' and mcontent!=null">mcontent=#{mcontent},</if>
+		<if test="mdir!='' and mdir!=null">mdir=#{mdir},</if>
+		<if test="mactor!='' and mactor!=null">mactor=#{mactor},</if>
+		<if test="mgenre!='' and mgenre!=null">mgenre=#{mgenre},</if>
+		<if test="minfo!='' and minfo!=null">minfo=#{minfo},</if>
+		<if test="mopen!='' and mopen!=null">mopen=#{mopen},</if>
+		<if test="mregDate!='' and mregDate!=null">mregDate=#{mregDate},</if>
+		<if test="mwriter!='' and mwriter!=null">mwriter=#{mwriter}</if>
+		</set>
+		where mno=#{mno}
+	</update>
+	
+	<!-- 매거진 수정처리 -이미지-->
+	<update id="updateMimg" parameterType="MfileDTO">
+		UPDATE mfile
+		set 
+		mFame=#{mFame}
+		where
+		mno=#{mno}
+		and mFno=#{mFno}	
+	</update>
+	
+</mapper> 

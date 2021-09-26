@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+  	<!-- 관리자 매거진 게시물등록 뷰 -->
+  	<definition name="/admin/mgz/newMgzForm" extends="layout">
+  		<put-attribute name="main" value="/WEB-INF/views/admin/mgz/newMgzForm.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 관리자 매거진 수정등록 뷰 -->
+  	<definition name="/admin/mgz/updateMgzForm" extends="layout">
+  		<put-attribute name="main" value="/WEB-INF/views/admin/mgz/updateMgzForm.jsp"></put-attribute>
+  	</definition>
+  	
+  	
+  	
+</tiles-definitions>

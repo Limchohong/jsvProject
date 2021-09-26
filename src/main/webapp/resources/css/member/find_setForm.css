@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+/* id찾기, 비밀번호 찾기, 비밀번호 찾기 성공 후 비밀번호 재설정 폼에서 공통 사용 */
+.findForm, .setPwdForm{
+	width:980px;
+    margin-top: 40px;
+	margin-bottom:100px;
+	
+}
+.findForm table, .setPwdForm table{
+	margin-top: 30px;
+	border-collapse: collapse;
+	border:1px solid #ccc;
+	width:60%;
+}
+
+.findForm_title, .setPwdForm_title{
+	font-weight: 500;
+    font-size: 28px;
+	border-bottom: 2px solid #000;
+	padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.findForm table td:first-child, .setPwdForm table td:first-child{
+	font-size:20px
+}
+
+.findForm table td, .setPwdForm table td{
+	height: 70px;
+}
+
+.findForm table input[type="text"], .setPwdForm table input[type="password"]{
+    height: 45px;
+    width: 80%;
+    border: 1px solid #ccc;
+    font-size: 17px;
+}
+
+.btn_find{
+	width:80%;
+    height: 50px;
+    border: none;
+    margin: 10px 0px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    background: #373e46;
+	color:#fff
+}

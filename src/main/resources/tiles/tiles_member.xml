@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+  	
+	<!-- 회원가입폼 -->
+  	<definition name="/member/signupForm" extends="layout">
+  		<put-attribute name="main" value="/WEB-INF/views/member/signupForm.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 로그인폼 -->
+  	<definition name="/member/loginForm" extends="layout">
+  		<put-attribute name="main" value="/WEB-INF/views/member/loginForm.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 마이페이지 비밀번호 확인 폼 -->
+  	<definition name="/member/mypagePwdCheckForm" extends="layout">
+  		<put-attribute name="main" value="/WEB-INF/views/member/mypagePwdCheckForm.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 마이페이지 폼 -->
+  	<definition name="/member/mypage" extends="layout">
+  		<put-attribute name="main" value="/WEB-INF/views/member/mypage.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 아이디 찾기 폼 -->
+  	<definition name="/member/findIdForm" extends="layout">
+  		<put-attribute name="main" value="/WEB-INF/views/member/findIdForm.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 아이디 찾기 결과 폼 -->
+  	<definition name="/member/findIdResultForm" extends="layout">
+  		<put-attribute name="main" value="/WEB-INF/views/member/findIdResultForm.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 비밀번호 찾기 폼 -->
+  	<definition name="/member/findPwdForm" extends="layout">
+  		<put-attribute name="main" value="/WEB-INF/views/member/findPwdForm.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 비밀번호 찾기 결과 폼 -->
+  	<definition name="/member/findPwdResultForm" extends="layout">
+  		<put-attribute name="main" value="/WEB-INF/views/member/findPwdResultForm.jsp"></put-attribute>
+  	</definition>
+  	
+</tiles-definitions>

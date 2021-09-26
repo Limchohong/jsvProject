@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminEvent">
+	<!-- resultMap -->
+	<resultMap type="eventDTO" id="EventResult">
+	   	<!-- <result property="dto의 필드명" column="db테이블의 컬럼명"/> -->
+	   	<result property="eno" column="eno"/>
+	   	<result property="ename" column="ename"/>
+	   	<result property="estart" column="estart"/>
+	   	<result property="eEnd" column="eEnd"/>
+	   	<result property="e_img" column="e_img"/>
+	</resultMap>
+	<!-- resultMap 끝 -->
+	
+	<!-- 관리자 이벤트 게시물 등록 -->
+	<insert id="insertEvent"  parameterType="java.util.Map">
+		<selectKey keyProperty="eno" resultType="int"  order="BEFORE">
+				SELECT NEXTVAL(eno_seq) FROM dual
+		</selectKey>
+			<![CDATA[ 
+					INSERT INTO event(eno,ename,estart,eEnd,e_img)
+						VALUES (#{eno},#{ename},#{estart},#{eEnd},#{e_img})
+			  ]]>				 
+	</insert>	
+	
+	<!-- 관리자 content수정처리  -->
+	<update id="updateContent" parameterType="eventDTO">
+		<![CDATA[
+		UPDATE EVENT
+			SET
+				ename=#{ename},
+				estart=#{estart},
+				eEnd=#{eEnd}
+			WHERE eno=#{eno}	
+			]]>	
+	</update>	
+	<!-- 이미지 수정 -->
+	<update id="updatEimg" parameterType="eventDTO">
+		<![CDATA[
+		UPDATE EVENT
+			SET
+				e_img=#{e_img}
+			WHERE eno=#{eno}
+			]]>	
+	</update>	
+	
+	
+	<!-- 관리자 이벤트 게시물 삭제 -->
+	<delete id="deleteEvent" parameterType="int">
+		<![CDATA[
+			DELETE FROM EVENT WHERE eno=#{eno}
+		]]>
+	</delete>
+	
+	<!-- 관리자 정보 조회 -->
+	<select id="selectInfo" resultType="int" parameterType="int">
+		<![CDATA[
+			select eno from event WHERE eno=#{eno}
+		]]>
+	</select>
+	
+</mapper> 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminMvChart">
+	<!-- resultMap -->
+	<resultMap type="MvChartDTO" id="ChartResult">
+	   	<result property="cno" column="cno"/>
+	   	<result property="c_img" column="c_img"/>
+	   	<result property="ctitle" column="ctitle"/>
+	   	<result property="crate" column="crate"/>
+	   	<result property="cdir" column="cdir"/>
+	   	<result property="cactor" column="cactor"/>
+	   	<result property="cgenre" column="cgenre"/>
+	   	<result property="cinfo" column="cinfo"/>
+	   	<result property="c_content" column="c_content"/>
+	   	<result property="copen" column="copen"/>
+	</resultMap>
+	<!-- resultMap 끝 -->
+	
+	<!-- 관리자 이벤트 게시물 등록 -->
+	<insert id="insertMvChart"  parameterType="java.util.Map">
+		<selectKey keyProperty="cno" resultType="int"  order="BEFORE">
+				SELECT NEXTVAL(cno_seq) FROM dual
+		</selectKey>
+			<![CDATA[ 
+					insert into mvchart(cno,c_img,ctitle,crate,cdir,cactor,cgenre,cinfo,c_content,copen)
+					value(#{cno},#{c_img},#{ctitle},#{crate},#{cdir},#{cactor},#{cgenre},#{cinfo},#{c_content},
+					#{copen})
+			  ]]>				 
+	</insert>	
+	
+	<delete id="delMychart"  parameterType="int">
+		delete from mvchart
+				where cno=#{cno}
+	</delete>
+	
+</mapper> 

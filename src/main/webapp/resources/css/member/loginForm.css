@@ -1,0 +1,98 @@
+@charset "UTF-8";
+/* 로그인폼 css */
+*{
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+  font-family:sans-serif;
+}
+
+.loginForm {
+  color:#000;
+  position:absolute;
+  width:500px;
+  height:500px;
+  padding: 30px, 20px;
+  text-align:center;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  border:2px solid #ccc;
+  border-radius: 15px;
+}
+
+.loginForm h2{
+  text-align: center;
+  margin: 30px;
+}
+
+.idForm{
+  border-bottom: 2px solid #ccc;
+  margin: 30px;
+  padding: 10px 10px;
+}
+
+.passForm{
+  border-bottom: 2px solid #ccc;
+  margin: 30px;
+  padding: 10px 10px;
+}
+
+.id, .password {
+  width: 100%;
+  height:80px;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:18px;
+  height:25px;
+  background: none;
+}
+
+.btn {
+  position:relative;
+  left:40%;
+  transform: translateX(-50%);
+  margin-bottom: 40px;
+  width:80%;
+  height:40px;
+  background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+  background-position: left;
+  background-size: 200%;
+  color:white;
+  font-weight: bold;
+  border:none;
+  cursor:pointer;
+  transition: 0.4s;
+  display:inline;
+}
+
+.btn:hover {
+  background-position: right;
+}
+
+.bottomText_wrap {
+  text-align: center;
+  display:block;
+}
+
+.bottomText{
+	display:inline-block;
+}
+.bottomText a{
+	font-size:16px;
+	color:#000;
+	float:left;
+	display:inline-block;
+	padding-right:15px;
+}
+
+.bottomText a:hover{
+	color:#ccc;
+}
+
+.bottomText:after{
+	content:'';
+	clear:both;
+	display: inline-block;
+}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+  	<definition name="giftShopLayout" template="/WEB-INF/views/common/giftShop/giftShop_layout.jsp">
+  		<!-- name="속성명" value="레이아웃을 구성하는 jsp의  위치" -->
+		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"></put-attribute>
+		<put-attribute name="nav" value="/WEB-INF/views/common/nav.jsp"></put-attribute>
+		<put-attribute name="goods_nav" value="/WEB-INF/views/common/giftShop/giftShop_nav.jsp"></put-attribute>
+		<put-attribute name="main" value=""></put-attribute>
+		<put-attribute name="adminMenu" value="/WEB-INF/views/common/adminMenu.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"></put-attribute>
+		<put-attribute name="side" value="/WEB-INF/views/common/side.jsp"></put-attribute>
+  	</definition>
+  		
+  	<!-- 기프트샵 메인 페이지 -->
+  	<definition name="/giftShopMain" extends="giftShopLayout">
+  		<put-attribute name="main" value="/WEB-INF/views/giftShop/main.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 카테고리별 상품 목록 -->
+  	<definition name="/goods/goodsList" extends="giftShopLayout">
+  		<put-attribute name="main" value="/WEB-INF/views/giftShop/goods/goodsList.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 상품상세 -->
+  	<definition name="/goods/goodsDetail" extends="giftShopLayout">
+  		<put-attribute name="main" value="/WEB-INF/views/giftShop/goods/goodsDetail.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 장바구니 목록 -->
+  	<definition name="/cart/cartList" extends="giftShopLayout">
+  		<put-attribute name="main" value="/WEB-INF/views/giftShop/cart/cartList.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 결제 폼 -->
+  	<definition name="/order/goodsOrderForm" extends="giftShopLayout">
+  		<put-attribute name="main" value="/WEB-INF/views/giftShop/order/goodsOrderForm.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 결제 확인 폼 -->
+  	<definition name="/order/isCompleteForm" extends="giftShopLayout">
+  		<put-attribute name="main" value="/WEB-INF/views/giftShop/order/isCompleteForm.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 주문내역 조회 폼 -->
+  	<definition name="/order/goodsOrderList" extends="giftShopLayout">
+  		<put-attribute name="main" value="/WEB-INF/views/giftShop/order/goodsOrderList.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 주문상세 내역 조회 폼 -->
+  	<definition name="/order/goodsOrderDetail" extends="giftShopLayout">
+  		<put-attribute name="main" value="/WEB-INF/views/giftShop/order/goodsOrderDetail.jsp"></put-attribute>
+  	</definition>
+  	
+  	
+</tiles-definitions>

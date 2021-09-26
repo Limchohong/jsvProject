@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+	
+	<!-- 회원가입 -->
+	<insert id="insertUser">
+		<![CDATA[
+			insert into member(u_id, u_password, u_name, u_nic, u_phone, u_email )
+			values( #{u_id},#{u_password},#{u_name},#{u_nic},#{u_phone}, #{u_email} )
+		]]>
+	</insert>
+	
+	<!-- 로그인 -->
+	<select id="loginProc" resultType="memberDTO">
+		<![CDATA[
+			select * from member where u_id=#{u_id} and u_password=#{u_password}
+		]]>
+	</select>
+	
+	<!-- 아이디 중복 체크 -->
+	<select id="getIdCnt" resultType="integer">
+		<![CDATA[
+			select count(*) from member where u_id=#{u_id}
+		]]>
+	</select>
+	
+	<!-- 마이페이지 - 비밀번호체크 -->
+	<select id="pwdCheck" resultType="int">
+		<![CDATA[
+			select count(*) from member where u_no=#{u_no} and u_password=#{u_password} 
+		]]>
+	</select>
+	
+	<!-- 마이페이지 폼 보여주기 -->
+	<select id="getMypageInfo" parameterType="int" resultType="memberDTO">
+		<![CDATA[
+			select * from member where u_no=#{u_no}
+		]]>
+	</select>
+	
+	<!-- 마이페이지 수정 -->
+	<update id="setMypageInfo" parameterType="memberDTO">
+		UPDATE member
+			<trim prefix="SET" suffixOverrides=",">
+		      	<if test=" u_password!=null and u_password!='' ">u_password=#{u_password},</if>
+			    <if test=" u_nic!=null and u_nic!='' ">u_nic=#{u_nic},</if>
+			    <if test=" u_phone!=null and u_phone!='' ">u_phone=#{u_phone},</if>
+			    <if test=" u_email!=null and u_email!='' ">u_email=#{u_email},</if>
+  			</trim>   
+		WHERE  u_no=#{u_no}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<update id="withdrawal" parameterType="int">
+		<![CDATA[
+			UPDATE member SET is_connection='n' WHERE u_no=#{u_no}
+		]]>
+	</update>
+
+	<!-- 로그인 검사 -->
+	<select id="login" parameterType="string" resultType="memberDTO">
+		<![CDATA[
+			select * from member where u_id = #{u_id}
+		]]>
+	</select>
+	
+	<!-- 이메일 중복체크 -->
+	<select id="getEmailCnt" parameterType="string" resultType="int">
+		<![CDATA[
+			 SELECT COUNT(u_email) as mail_cnt 
+			 FROM 	member 
+			 WHERE 	u_email=#{u_email}
+		 ]]>
+	</select>
+	
+	<!-- ID찾기 -->
+	<select id="findId" parameterType="hashMap" resultType="string">
+		<![CDATA[
+			SELECT u_id 
+			FROM   member
+			WHERE  u_name=#{u_name}
+				   AND
+				   u_email=#{u_email}
+		]]>
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="findPwd" parameterType="hashMap" resultType="int">
+		<![CDATA[
+			SELECT count(*)
+			FROM   member
+			WHERE  u_name=#{u_name}
+				   AND
+				   u_id=#{u_id}
+				   AND
+				   u_email=#{u_email}
+		]]>
+	</select>
+	
+	<!-- 비밀번호 재설정 -->
+	<update id="setPwd" parameterType="memberDTO">
+		<![CDATA[
+			UPDATE member
+			SET    u_password=#{u_password}
+			WHERE  u_id=#{u_id}
+		]]>
+	</update>
+
+</mapper>

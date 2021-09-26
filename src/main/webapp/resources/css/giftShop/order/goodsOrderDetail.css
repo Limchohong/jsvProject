@@ -1,0 +1,74 @@
+@charset "UTF-8";
+.order_detail_list_wrap{
+	width:980px;
+    margin-top: 40px;
+	margin-bottom:100px;
+}
+
+.item_title{
+	float:left;
+	margin-top: 10px;
+	padding-left: 10px;
+	padding-right: 30px;
+	font-size: 20px;
+	display: inline-block;
+}
+
+.item_title strong{
+	display:block;
+	text-align:left;
+	padding-bottom: 3px;
+}
+.item_content{
+	float:left;
+	margin-top: 10px;
+	padding-left: 10px;
+	display: inline-block;
+}
+.item_content span{
+	display:block;
+	text-align:left;
+	padding-bottom: 3px;
+	font-size: 20px;
+}
+.content_wrap::after{
+	content:'';
+	clear:both;
+	display:block;
+}
+
+.img_wrap{
+	float: left;
+    margin-right: 20px;
+    border-right: 1px solid #ccc;
+    display: inline-block;
+    padding: 3px 20px 3px 20px;
+}
+.content_wrap{
+	float:left;
+	display: inline-block;
+}
+
+.item_wrap{
+    margin:20px 61px;
+    border: 2px solid #ccc;
+}
+
+.item_wrap::after{
+	content:'';
+	clear:both;
+	display:block;
+}
+
+.order_detail_title{
+	font-weight: 600;
+    font-size: 28px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.order_no{
+	text-align:left;
+	margin-left:61px;
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mgz">
+	<resultMap type="MagazineDTO" id="MgzResult">
+	   	<result property="mno" column="mno"/>
+	   	<result property="mtitle" column="mtitle"/>
+	   	<result property="mcontent" column="mcontent"/>
+	   	<result property="mdir" column="mdir"/>
+	   	<result property="mactor" column="mactor"/>
+	   	<result property="mgenre" column="mgenre"/>
+	   	<result property="minfo" column="minfo"/>
+	   	<result property="mopen" column="mopen"/>
+	   	<result property="mregDate" column="mregDate"/>
+	   	<result property="mwriter" column="mwriter"/>
+	   	<result property="mFame" column="mFame"/>
+	   	<result property="mFtype" column="mFtype"/>
+	   	
+	</resultMap>
+	
+	<!-- 이벤트 목록조회 -->
+	<select id="getMList"  resultMap="MgzResult">
+	  <![CDATA[ 
+	   SELECT a.* FROM
+					(SELECT m.*,mfi.mFame,mfi.mFtype
+					FROM magazine m, mfile mfi where m.mno = mfi.mno
+					AND mfi.mFtype='main_img')a
+	  ]]>
+	</select>	
+	
+	<!-- 매거진 상세조회 정보 -->
+	<select id="getMgzDetail"  resultMap="MgzResult" parameterType="int">
+		  <![CDATA[ 
+				SELECT  m.*,mfi.mFame,mfi.mFtype
+				FROM    magazine m, mfile mfi
+				where m.mno = mfi.mno
+						AND  mfi.mFtype='main_img'
+		        		AND  m.mno= #{mno}
+		        ORDER BY m.mno		        
+		  ]]>
+	</select>	
+		
+	<!-- 매거진 상세조회- 이미지 -->
+	<select id="getMgzImg"  
+	        resultType="MfileDTO"  parameterType="int">
+				SELECT *
+				FROM   mfile
+				WHERE  mno=#{mno}
+				       AND
+				       mFtype!='main_img'
+	</select>	
+	
+</mapper> 

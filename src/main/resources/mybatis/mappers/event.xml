@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="event">
+	<!-- 이벤트 목록조회 -->
+	<select id="getElist" resultType="eventDTO">
+			select eno,ename,estart,eEnd,e_img from event
+	</select>
+	
+	<!-- 이벤트 상세조회  -->
+	<select id="getEdetail" resultType="eventDTO" parameterType="int">
+		select eno,ename,estart,eEnd,e_img from event 
+						where eno=#{eno}
+	</select>
+</mapper> 

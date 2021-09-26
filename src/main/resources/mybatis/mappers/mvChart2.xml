@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jsv.mvfinder.dao.MvfinderMapper">
+	<resultMap type="MvChartDTO" id="ChartResult">
+	   	<result property="cno" column="cno"/>
+	   	<result property="c_img" column="c_img"/>
+	   	<result property="ctitle" column="ctitle"/>
+	   	<result property="crate" column="crate"/>
+	   	<result property="cdir" column="cdir"/>
+	   	<result property="cactor" column="cactor"/>
+	   	<result property="cgenre" column="cgenre"/>
+	   	<result property="cinfo" column="cinfo"/>
+	   	<result property="c_content" column="c_content"/>
+	</resultMap>
+	
+	<!-- 무비파인더 목록 조회 -->
+		<select id="mvfinderList" resultType="MvChartDTO">
+		SELECT
+		*
+		FROM mvchart
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='ctitle' and keyword != null and keyword != '' ">
+				AND ctitle like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='cactor' and keyword != null and keyword != '' ">
+				AND cactor like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='cdir' and keyword != null and keyword != '' ">
+				AND cdir like CONCAT('%', #{keyword}, '%')
+			</if>
+		</trim>
+		ORDER BY
+		cno DESC
+		LIMIT #{startList}, #{listSize}
+	</select>
+
+	<!-- 전체 글의 개수를 읽어옴-->
+	<select id="getMvCnt" resultType="int">
+		SELECT
+		count(*) as
+		listCnt
+		FROM
+		mvchart
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="keyword != null and keyword != '' ">
+				<if test="searchType=='ctitle'">
+					AND ctitle like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='cactor'">
+					AND cactor like CONCAT('%', #{keyword}, '%')
+				</if>
+				<if test="searchType=='cdir'">
+					AND cdir like CONCAT('%', #{keyword}, '%')
+				</if>
+			</if>
+		</trim>
+	</select>
+</mapper>

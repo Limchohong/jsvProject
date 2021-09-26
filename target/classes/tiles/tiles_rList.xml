@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+  	
+  	
+	<!-- 매거진 상세보기 -->
+  	<definition name="/reserve/rList" extends="layout">
+  		<put-attribute name="main" value="/WEB-INF/views/reserve/rList.jsp"></put-attribute>
+  	</definition>
+  	
+</tiles-definitions>

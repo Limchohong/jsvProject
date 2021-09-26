@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+  <!-- definition요소의    
+  		name="공통 레이아웃의 뷰이름을   지정" 
+  		template="전체 레이아웃을 정하는    jsp의 위치를   지정"  -->
+  	
+  	<!-- 무비차트 목록 -->
+  	<definition name="/mvchart/mvChartList" extends="layout">
+  		<put-attribute name="main" value="/WEB-INF/views/mvchart/mvChartList.jsp"></put-attribute>
+  	</definition>
+  	
+  	<!-- 무비차트 상세보기 -->
+  	<definition name="/mvchart/mvDetail" extends="layout">
+  		<put-attribute name="main" value="/WEB-INF/views/mvchart/mvDetail.jsp"></put-attribute>
+  	</definition>
+
+</tiles-definitions>

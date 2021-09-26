@@ -1,0 +1,71 @@
+@charset "UTF-8";
+/* 마이페이지css */
+.mypageForm{
+	width:980px;
+    margin-top: 40px;
+	margin-bottom:100px;
+}
+.mypageForm table{
+	margin-top: 30px;
+	border-collapse: collapse;
+	width:60%;
+}
+
+.mypageForm_title{
+	font-weight: 500;
+    font-size: 28px;
+	border-bottom: 2px solid #000;
+	padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+.mypage_wrap tbody{
+	border: 1px solid #373e46;
+}
+.mypage_wrap td{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+.mypage_wrap tr td{
+	font-size:18px;
+}
+
+.mypage_wrap input[type="text"], .mypage_wrap input[type="password"]{
+	border:1px solid #ccc;
+	width: 80%;
+    height: 50px;
+    font-size:17px
+}
+
+.btn_set, .btn_cancel{
+    width: 130px;
+    height: 40px;
+    border: none;
+    margin: 10px 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.btn_set{
+	background: #373e46;
+	color:#fff
+}
+
+.mypage_wrap tr:first-child td{
+	text-align:right;
+}
+
+.btn_withdrawal{
+	width: 20%;
+    height: 30px;
+    border: none;
+    margin-right: 40px;
+    cursor: pointer;
+}
+#set_pwd{
+	width: 40px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+}

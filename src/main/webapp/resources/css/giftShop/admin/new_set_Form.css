@@ -1,0 +1,144 @@
+@charset "UTF-8";
+.size {
+	height:420px;
+	width: 420px;
+}
+
+.sizeInfo{
+	font-size:1rem;
+	color:gray;
+}
+
+.waring{
+	color:red;
+	font-size:1rem;
+}
+
+#setGoodsFrm,#newGoodsFrm{
+	width:980px;
+    margin-top: 40px;
+	margin-bottom:100px;
+}
+
+.text-title {
+	float:left;
+	display:inline-block;
+	font-size: 25px;
+}
+
+.text-title strong{
+	display:block;
+	font-weight: 500;
+}
+
+.text-content{
+	float:left;
+	display:inline-block;
+}
+
+.text-content span{
+	display:block;
+}
+.content_wrap::after{
+	content:'';
+	clear:both;
+	display:block;
+}
+
+.size tr{
+	font-size:18px;
+}
+
+.select_box{
+	width: 90%;
+    height: 90%;
+    border: 1px solid #ccc;
+}
+
+.text_box{
+	width: 90%;
+    height: 80%;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+#preview{
+ width: 70%;
+}
+
+.text_wrap, .img_wrap{
+	height:80%
+}
+.img_wrap{
+	border:2px solid #ccc;
+}
+
+.text_title{
+	text-align:right
+}
+
+.desc_title{
+	text-align:left;
+	font-size:18px
+}
+#goods_detail_desc1,#goods_detail_desc2, #goods_detail_desc3, #goods_detail_desc4, #goods_detail_desc5{
+	width:100%;
+	text-align:left;
+	resize:none;
+	padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #ccc;
+}
+
+#goods_detail_desc1{
+	height: 20px;
+}
+#goods_detail_desc2{
+	height: 150px;
+}
+#goods_detail_desc3{
+	height: 50px;
+}
+
+#goods_detail_desc4{
+	height: 40px;
+}
+#newGoodsFrm strong,#setGoodsFrm strong{
+	width: 980px;
+    border-bottom: 2px solid;
+    display: block;
+    padding-bottom: 5px;
+}
+
+.btn_reg{
+    width: 200px;
+	height: 50px;
+    margin-right: 20px;
+    font-size: 1.2rem;
+    color: #fff;
+    text-align: center;
+    border: 0px;
+    background-color: #373e46;
+    cursor: pointer;
+}
+
+.btn_can{
+    width: 200px;
+    height: 50px;
+    margin-right: 20px;
+    font-size: 1.2rem;
+    color: #222;
+    text-align:center;
+    border: 0px;
+    background-color: #fff;
+    border: 1px solid #9197a3;
+    cursor: pointer;
+}
+.btn_wrap{
+    padding-top: 20px;
+}
+
+.preview_img{
+	height:232.938px;
+	width:232.938px
+}

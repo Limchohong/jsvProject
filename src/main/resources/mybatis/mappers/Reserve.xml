@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="reserveSpace">
+	<resultMap type="com.jsv.reserve.dto.ReserveDTO" id="ReserveDTO">
+		<id property="reserveSequence" column="reserveSequence"/>
+		<result property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="runningTime" column="runningTime" />
+		<result property="movieAge" column="movieAge" />
+		<result property="movieDate" column="movieDate" />
+		<result property="reserveDate" column="reserveDate" />
+		<result property="ticketNumber" column="ticketNumber" />
+		<result property="selectedSeat" column="selectedSeat" />
+		<result property="selectedTheater" column="selectedTheater" />
+	</resultMap>
+	
+	<resultMap type="com.jsv.reserve.dto.PayDTO" id="PayDTO">
+		<result property="id" column="id" />
+		<result property="reserveSequence" column="reserveSequence" />
+		<result property="payDate" column="payDate" />
+		<result property="payMoney" column="payMoney" />
+	</resultMap>
+	
+	<resultMap type="com.jsv.reserve.dto.TheaterDTO" id="TheaterDTO">
+		<result property="theaterNo" column="theaterNo" />
+		<result property="theaterPlace" column="theaterPlace" />
+		<result property="theaterName" column="theaterName" />
+	</resultMap>
+	
+	<resultMap type="com.jsv.reserve.dto.MovieDTO" id="MovieDTO">
+		<result property="movieNo" column="movieNo" />
+		<result property="title" column="title" />
+		<result property="star_score" column="star_score" />
+		<result property="exp" column="exp" />
+		<result property="genne" column="genne" />
+		<result property="movieDate" column="movieDate" />
+		<result property="director" column="director" />
+		<result property="act" column="act" />
+		<result property="runningTime" column="runningTime" />
+		<result property="movieAge" column="movieAge" />
+		<result property="summary" column="summary" />
+	</resultMap>
+
+	<!-- 영화 목록 만들 select -->
+	<select id="selectMovie" resultMap="MovieDTO">
+		SELECT * FROM movie
+			ORDER BY EXP DESC;
+	</select>
+		
+	<!-- 영화관 목록 만들 select -->
+	<select id="selectTheater" parameterType="com.jsv.reserve.dto.TheaterDTO" resultMap="TheaterDTO">
+		SELECT theaterNo, theaterPlace, theaterName 
+			FROM theater
+			WHERE theaterPlace = #{theaterPlace}
+			
+	</select>
+	
+	<select id="selectMapping" parameterType="com.jsv.reserve.dto.ReserveDTO" resultMap="ReserveDTO">
+		SELECT r.id, r.reserveSequence, r.title, r.runningTime, r.movieAge, r.movieDate, r.reserveDate,
+			r.ticketNumber, r.selectedSeat, r.selectedTheater, p.payMoney, p.payDate
+			FROM reserve r, pay p
+			WHERE r.reserveSequence = p.reserveSequence AND r.id = #{id}
+			ORDER BY p.payDate DESC
+	</select>
+	
+	<select id="getReserveList" parameterType="com.jsv.reserve.dto.ReserveDTO" resultType="com.jsv.reserve.dto.ReserveDTO">
+		SELECT id, reserveSequence, title, runningTime, movieAge, movieDate,
+			reserveDate, ticketNumber, selectedSeat, selectedTheater
+			FROM reserve WHERE id = #{id}
+			ORDER BY reserveSequence DESC
+	</select>
+
+	<select id="getReserve" parameterType="com.jsv.reserve.dto.ReserveDTO" resultType="com.jsv.reserve.dto.ReserveDTO">
+		SELECT id, reserveSequence, title, runningTime, movieAge, movieDate,
+			reserveDate, ticketNumber, selectedSeat, selectedTheater
+			FROM reserve WHERE id = #{id}
+			ORDER BY reserveSequence DESC
+	</select>
+	
+	<insert id="Reserve" parameterType="ReserveDTO" >
+	
+		<selectKey keyProperty="reserveSequence" resultType="int" order="BEFORE">
+			SELECT AUTO_INCREMENT
+				FROM   information_schema.tables
+				WHERE  table_name = "reserve"
+				AND    table_schema = "jsv"
+		</selectKey>
+	
+		<![CDATA[
+	
+		INSERT INTO reserve(reserveSequence, id, title, runningTime, movieAge, movieDate,
+		 reserveDate, ticketNumber, selectedSeat, selectedTheater)
+		VALUES(#{reserveSequence}, #{id}, #{title}, #{runningTime},
+		#{movieAge}, #{movieDate}, NOW(), #{ticketNumber}, #{selectedSeat},
+		#{selectedTheater})
+		]]>
+	</insert>
+	
+</mapper>	
+

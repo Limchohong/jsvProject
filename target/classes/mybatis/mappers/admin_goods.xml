@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin_goods">
+
+	<!-- (관리자)상품등록 -->
+	<insert id="newGoods" parameterType="hashMap">
+		<selectKey keyProperty="goods_no" resultType="int" order="BEFORE">
+			SELECT AUTO_INCREMENT
+			FROM information_schema.tables
+			WHERE table_name = "goods"
+			AND table_schema = "jsv";
+		</selectKey>
+		<![CDATA[
+			INSERT INTO goods(goods_no, goods_cate_no, goods_name, goods_comp,
+							  goods_price, goods_validity, goods_country,
+							  goods_img )
+							  
+			VALUES (#{goods_no}, #{goods_cate_no}, #{goods_name}, #{goods_comp}, 
+				    #{goods_price}, #{goods_validity},#{goods_country},#{goods_img})
+		]]>			
+	</insert>
+	
+	<!-- (관리자)상품 상세 설명 등록 -->
+	<insert id="newGoodsDetail" parameterType="hashMap">
+		<![CDATA[
+			INSERT INTO goods_detail(goods_detail_no, goods_no, goods_detail_desc1,
+									 goods_detail_desc2, goods_detail_desc3,
+									 goods_detail_desc4,goods_detail_desc5)
+							  
+			VALUES (#{goods_detail_no}, #{goods_no}, #{goods_detail_desc1}, #{goods_detail_desc2},
+					#{goods_detail_desc3}, #{goods_detail_desc4}, #{goods_detail_desc5})
+		]]>			
+	</insert>
+	
+	<!-- 관리자 상품삭제 -->
+	<delete id="removeGoods" parameterType="int">
+		<![CDATA[
+			DELETE g,gd
+			FROM   goods g JOIN goods_detail gd
+			WHERE  g.goods_no=gd.goods_no 
+				   AND 
+				   g.goods_no=#{goods_no}
+		]]>
+	</delete>
+	
+	<!-- 관리자 상품 수정 -->
+	<update id="setGoods" parameterType="HashMap">
+		UPDATE goods
+			<trim prefix="SET" suffixOverrides=",">
+		      	<if test=" goods_cate_no!=null and goods_cate_no!='' ">goods_cate_no=#{goods_cate_no},</if>
+			    <if test=" goods_name!=null and goods_name!='' ">goods_name=#{goods_name},</if>
+			    <if test=" goods_comp!=null and goods_comp!='' ">goods_comp=#{goods_comp},</if>
+			    <if test=" goods_price!=null and goods_price!='' ">goods_price=#{goods_price},</if>
+			    <if test=" goods_validity!=null and goods_validity!='' ">goods_validity=#{goods_validity},</if>
+			    <if test=" goods_country!=null and goods_country!='' ">goods_country=#{goods_country},</if>
+			    <if test=" goods_img!=null and goods_img!='' ">goods_img=#{goods_img},</if>
+  			</trim>   
+		WHERE  goods_no=#{goods_no}
+	</update>
+	
+	<!-- 관리자 상품 상세 수정 -->
+	<update id="setGoodsDetail" parameterType="HashMap">
+		UPDATE goods_detail
+			<trim prefix="SET" suffixOverrides=",">
+			    <if test=" goods_detail_desc1!=null and goods_detail_desc1!='' ">goods_detail_desc1=#{goods_detail_desc1},</if>
+			    <if test=" goods_detail_desc2!=null and goods_detail_desc2!='' ">goods_detail_desc2=#{goods_detail_desc2},</if>
+			    <if test=" goods_detail_desc3!=null and goods_detail_desc3!='' ">goods_detail_desc3=#{goods_detail_desc3},</if>
+			    <if test=" goods_detail_desc4!=null and goods_detail_desc4!='' ">goods_detail_desc4=#{goods_detail_desc4},</if>
+			    <if test=" goods_detail_desc5!=null and goods_detail_desc5!='' ">goods_detail_desc5=#{goods_detail_desc5}</if>
+  			</trim>   
+		WHERE  goods_no=#{goods_no}
+	</update>
+	
+	<!-- 관리자 연매출 조회 -->
+	<select id="getGoodsYearSales" resultType="hashMap">
+		<![CDATA[
+			SELECT 	 YEAR(goods_order_date) AS year, 
+					 sum(goods_order_price) AS total
+			FROM   	 goods_order
+			GROUP BY year
+			ORDER BY YEAR
+		]]>
+	</select>
+	
+	<!-- 관리자 월매출 조회 -->
+	<select id="getGoodsMonthlySales" resultType="hashMap">
+		<![CDATA[
+			SELECT   YEAR(goods_order_date) AS year,
+					 MONTH(goods_order_date) AS month, 
+       				 sum(goods_order_price) AS total
+  			FROM 	 goods_order
+  			GROUP BY month
+  			ORDER BY YEAR
+		]]>
+	</select>
+	
+	<!-- 관리자 월별 일매출 조회 -->
+	<select id="getGoodsDailySales" parameterType="hashMap" resultType="hashMap">
+		<![CDATA[
+			SELECT 	 MONTH(DATE(goods_order_date)) AS month,
+				   	 day(goods_order_date) AS day,
+                     sum(goods_order_price) AS total 
+		  	FROM     goods_order
+		  	WHERE    YEAR(goods_order_date)=#{year}
+		  		     AND 
+		  		     MONTH(DATE(goods_order_date))=#{month}
+		 	GROUP BY day
+		 	ORDER BY DAY
+		]]>
+	</select>
+	
+</mapper> 

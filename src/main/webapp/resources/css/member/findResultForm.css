@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+/* id찾기, 비밀번호 찾기 결과 폼에 공통 적용 */
+
+.find_result_wrap{
+    width: 980px;
+    margin-top: 40px;
+	margin-bottom:100px;
+}
+.find_result_wrap .find_title{
+	font-weight: 800;
+    font-size: 26px;
+    line-height: 20px;
+    text-align: center;
+    border-bottom: 2px solid #ccc;
+    padding-bottom:10px
+}
+.find_result_view{
+	padding-top: 26px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.thumb{
+	width: 250px;
+    height: 250px;
+    margin: 10px 0 5px;
+}
+.desc{
+	padding: 14px 0px;
+    font-weight: 700;
+    font-size: 20px;
+    color: #373e46;
+    line-height: 29px;
+}
+
+.btn_type{
+	margin-top: 20px;
+	display: block;
+    overflow: hidden;
+    width: 50%;
+    height: 54px;
+    border-radius: 3px;
+    font-size: 0;
+    text-align: center;
+    border: 1px solid #373e46;
+    background-color: #373e46;
+}
+.btn_type .text{
+	display: inline-block;
+    height: 100%;
+    font-weight: 500;
+    font-size: 16px;
+    color: #fff;
+    line-height: 51px;
+    text-align: center;
+}
+.result_wrap::before{
+	content:'"'
+} 
+.result_wrap::after{
+	content:'"'
+}

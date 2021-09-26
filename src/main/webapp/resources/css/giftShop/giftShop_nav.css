@@ -1,0 +1,71 @@
+.category_wrap {
+    position: relative;
+    margin-top: -1px;
+    background-color: #fff;
+    border-bottom:1px solid #ccc;
+}
+
+.category_wrap a{
+	color:#000;
+}
+.category_contents_wrap {
+    overflow: hidden;
+	position: relative;
+    width: 980px;
+    min-width: 980px;
+    margin: 0 auto;
+    padding: 18px 0 0;
+    background-color: #fff;
+}
+
+.category_content {
+    float: left;
+    position: relative;
+    overflow: hidden;
+    max-width: 740px;
+    line-height: 26px;
+}
+
+.category_content li {
+    float: left;
+    padding-left: 8px;
+    padding-right: 16px;
+    padding-bottom: 14px;
+}
+
+.cart_content {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    /* float: right; */
+    overflow: hidden;
+    line-height: 26px;
+    margin-top: -13px;
+    border-left: 1px solid #ccc;
+}  
+ .cart_content li {
+    float: left;
+    padding-left: 12px;
+} 
+
+.cart_content li a + span {
+    float: right;
+    position: relative;
+    top: 3px;
+    min-width: 12px;
+    margin-left: 8px;
+    padding: 0 4px;
+    font-family: 'CJONLYONENEW';
+    font-weight: 500;
+    font-size: 1rem;
+    color: #fff;
+    line-height: 20px;
+    text-align: center;
+    background-color: #dc291e;
+    border-radius: 10px;
+    outline: none;
+}
+
+.active { background-color: green; }
+/* to override the existing css for "a" tag */
+.category_contentr .active a{ color: green; border-bottm:1px solid pink}

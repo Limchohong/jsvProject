@@ -1,0 +1,89 @@
+@charset "UTF-8";
+
+#admin_frm {
+	width:980px;
+    margin-top: 50px;
+	margin-bottom:100px;
+}
+
+.goods_list_wrap{
+	border-collapse: collapse;
+	font-size:20px
+}
+.goods_list_wrap tr:not(:last-of-type){
+	border-bottom:1px solid #d6d6d6;
+}
+.goods_list_wrap tr:not(:first-of-type){
+	font-size:18px;
+}
+
+.goods_list_wrap td:not(:last-of-type){
+	padding: 3px 10px;
+}
+
+.goods_list_wrap tr:last-child{
+	height: 50px;
+}
+
+.goods_list_wrap tr:last-child > td{
+	text-align:left;
+} 
+
+.list_title > td{
+	padding:10px 10px;
+}
+
+.goods_list_wrap tr td a.del_link{
+	text-decoration: none;
+	color:red;
+}
+.goods_list_wrap tr td a.update_link{
+	text-decoration: none;
+	color:#000;
+}
+
+.paging{
+	font-size: 22px;
+}
+
+.paging span{
+	color: red;
+    padding-right: 5px;
+}
+
+.paging a{
+	display:inline-block;
+    padding-right: 5px;
+    color: #000;
+}
+ 
+#checkRemove{
+	height: 30px;
+    width: 100px;
+    border: none;
+    cursor: pointer;
+}
+.admin_title{
+	font-weight: 600;
+    font-size: 28px;
+	border-bottom: 2px solid #000;
+	padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.goods_reg_link{
+	display:inline-block;
+	padding-bottom: 20px;
+	font-size:20px;
+	font-weight: 600;
+	color:#000;
+}
+.goods_reg_link:hover, .paging a:hover, .goods_list_wrap tr td a.del_link:hover, 
+.goods_list_wrap tr td a.update_link:hover{
+	color: #ccc;
+}
+
+.goods_imgList{
+	width:90px;
+	height:90px
+}
